@@ -1,36 +1,15 @@
-#!/usr/bin/env python3
+import pytest
+from lib.list_comprehension import return_evens, make_exclamation
 
-from list_comprehension import return_evens, make_exclamation
+def test_return_evens():
+    assert return_evens([0, 1, 3, 5, 7, 8, 9]) == [0, 8]
+    assert return_evens([2, 4, 6, 8, 10]) == [2, 4, 6, 8, 10]
+    assert return_evens([1, 3, 5, 7, 9]) == []
 
-class TestReturnEvens:
-    '''function return_evens()'''
+def test_make_exclamation():
+    assert make_exclamation(["Hello", "I'm doing great", "Python is fun"]) == ["Hello!", "I'm doing great!", "Python is fun!"]
+    assert make_exclamation(["Yes", "No", "Maybe"]) == ["Yes!", "No!", "Maybe!"]
+    assert make_exclamation([]) == []
 
-    def test_return_empty_list_if_odds(self):
-        '''returns empty list when num_list has no evens'''
-        num_list = range(1,10,2)
-        assert return_evens(num_list) == []
-
-    def test_return_evens(self):
-        '''returns evens from num_list'''
-        num_list = range(10)
-        assert return_evens(num_list) == [0, 2, 4, 6, 8]
-
-class TestMakeExclamation:
-    '''function make_exclamation()'''
-
-    def test_return_empty_list_if_empty_input(self):
-        '''returns empty list when sentence_list is empty'''
-        assert make_exclamation([]) == []
-
-    def test_return_exclamation_list(self):
-        '''returns list of sentences with exclamation marks'''
-        sentence_list = [
-            "I like computers",
-            "I require coffee",
-            "Live long and prosper",
-        ]
-        assert(make_exclamation(sentence_list) == [
-            "I like computers!",
-            "I require coffee!",
-            "Live long and prosper!",
-        ])
+if __name__ == "__main__":
+    pytest.main()
